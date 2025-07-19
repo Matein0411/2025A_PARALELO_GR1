@@ -85,11 +85,7 @@ int main()
     Shader ourShader("shaders/shader_exercise16_mloading.vs", "shaders/shader_exercise16_mloading.fs");
 
     // load models
-    // -----------
-    //Model ourModel(FileSystem::getPath("resources/objects/backpack/backpack.obj"));
-    //Model ourModel("C:/Users/daena/Desktop/EPN/5to_Semestre/Comp Graf/Visual Deber/OpenGL/OpenGL/model/circo/circo.obj");
-	Model ourModel("C:/Users/daena/source/repos/2025A_PARALELO_GR1/Proyecto/models/circo/circo.obj");
-    //Model ourModel("model/backpack/backpack.obj");
+    Model ourModel("models/circo/circo.obj");
 
 
     // draw in wireframe

@@ -1,0 +1,11 @@
+Model Information:
+* title:	FNAF 2 map
+* source:	https://sketchfab.com/3d-models/fnaf-2-map-fef19570d5b84e2a94426c76f8f22a40
+* author:	animator12 (https://sketchfab.com/animator12)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "FNAF 2 map" (https://sketchfab.com/3d-models/fnaf-2-map-fef19570d5b84e2a94426c76f8f22a40) by animator12 (https://sketchfab.com/animator12) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

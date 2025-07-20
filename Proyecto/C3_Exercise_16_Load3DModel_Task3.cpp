@@ -85,7 +85,7 @@ int main()
     Shader ourShader("shaders/shader_exercise16_mloading.vs", "shaders/shader_exercise16_mloading.fs");
 
     // load models
-    Model ourModel("models/circo/circo.obj");
+    Model ourModel("models/FNAF/FNAF.obj");
 
 
     // draw in wireframe

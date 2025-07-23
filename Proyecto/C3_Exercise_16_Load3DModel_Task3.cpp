@@ -9,6 +9,10 @@
 #include <learnopengl/camera.h>
 #include <learnopengl/model.h>
 
+#include <vector>
+#include <sstream>
+#include <iomanip>
+
 #include <iostream>
 
 #define STB_IMAGE_IMPLEMENTATION 
@@ -87,9 +91,21 @@ int main()
     // load models
     // -----------
     //Model ourModel(FileSystem::getPath("resources/objects/backpack/backpack.obj"));
-    //Model ourModel("C:/Users/daena/Desktop/EPN/5to_Semestre/Comp Graf/Visual Deber/OpenGL/OpenGL/model/circo/circo.obj");
-	Model ourModel("C:/Users/daena/source/repos/2025A_PARALELO_GR1/Proyecto/models/circo/circo.obj");
+	//Model ourModel("C:/Users/daena/source/repos/2025A_PARALELO_GR1/Proyecto/models/bearFreddy/osoMov.glb");
     //Model ourModel("model/backpack/backpack.obj");
+    std::vector<Model> animationFrames;
+    int totalFrames = 2; // porque tienes 3 archivos
+    float fps = 2.0f;    // velocidad de animación (2 frames por segundo)
+
+    // Cargar los modelos frame_000.obj, frame_001.obj, ...
+    for (int i = 1; i <= totalFrames; ++i) {
+        std::stringstream ss;
+        ss << "C:/Users/daena/source/repos/2025A_PARALELO_GR1/Proyecto/models/bearFreddy/oso"
+            << i << ".obj";
+        animationFrames.push_back(Model(ss.str()));
+    }
+
+
 
 
     // draw in wireframe
@@ -103,9 +119,10 @@ int main()
     {
         // per-frame time logic
         // --------------------
-        float currentFrame = glfwGetTime();
+        /*float currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
+        */
 
         // input
         // -----
@@ -130,7 +147,10 @@ int main()
         model = glm::translate(model, glm::vec3(0.0f, 0.0f, -50.0f)); // translate it down so it's at the center of the scene
         model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));	// it's a bit too big for our scene, so scale it down
         ourShader.setMat4("model", model);
-        ourModel.Draw(ourShader);
+        //ourModel.Draw(ourShader);
+        int currentFrame = (int)(glfwGetTime() * fps) % totalFrames;
+        animationFrames[currentFrame].Draw(ourShader);
+
 
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)

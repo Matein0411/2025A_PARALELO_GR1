@@ -112,8 +112,18 @@ int main()
         glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // don't forget to enable shader before setting uniforms
+        // don't forget to 
+        // enable shader before setting uniforms
         ourShader.use();
+
+
+        // Actualizar valores de la linterna dinámica
+        ourShader.setVec3("viewPos", camera.Position);
+        ourShader.setVec3("lightPos", camera.Position);
+        ourShader.setVec3("lightDir", camera.Front);
+        ourShader.setFloat("cutOff", glm::cos(glm::radians(12.5f)));
+        ourShader.setFloat("outerCutOff", glm::cos(glm::radians(17.5f)));
+
 
         // view/projection transformations
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);

@@ -35,6 +35,11 @@ bool firstMouse = true;
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
 
+bool spotlightOn = false;
+bool keyPressed = false;
+
+
+
 int main()
 {
     // glfw: initialize and configure
@@ -98,32 +103,37 @@ int main()
     while (!glfwWindowShouldClose(window))
     {
         // per-frame time logic
-        // --------------------
         float currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
         // input
-        // -----
         processInput(window);
 
         // render
-        // ------
         glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // don't forget to 
-        // enable shader before setting uniforms
+        // activar shader y pasar variables uniformes
         ourShader.use();
 
-
-        // Actualizar valores de la linterna dinámica
+        // Posición del espectador
         ourShader.setVec3("viewPos", camera.Position);
-        ourShader.setVec3("lightPos", camera.Position);
-        ourShader.setVec3("lightDir", camera.Front);
-        ourShader.setFloat("cutOff", glm::cos(glm::radians(12.5f)));
-        ourShader.setFloat("outerCutOff", glm::cos(glm::radians(17.5f)));
 
+        // Spotlight activado solo si se mantiene presionada la tecla 'K'
+        if (spotlightOn) {
+            ourShader.setVec3("lightPos", camera.Position);
+            ourShader.setVec3("lightDir", camera.Front);
+            ourShader.setFloat("cutOff", glm::cos(glm::radians(12.5f)));
+            ourShader.setFloat("outerCutOff", glm::cos(glm::radians(17.5f)));
+        }
+        else {
+            // spotlight apagado: valores neutros
+            ourShader.setVec3("lightPos", glm::vec3(0.0f));
+            ourShader.setVec3("lightDir", glm::vec3(0.0f, -1.0f, 0.0f));
+            ourShader.setFloat("cutOff", glm::cos(glm::radians(0.0f)));
+            ourShader.setFloat("outerCutOff", glm::cos(glm::radians(0.0f)));
+        }
 
         // view/projection transformations
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
@@ -131,19 +141,18 @@ int main()
         ourShader.setMat4("projection", projection);
         ourShader.setMat4("view", view);
 
-        // render the loaded model
+        // render model
         glm::mat4 model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, 0.0f, -50.0f)); // translate it down so it's at the center of the scene
-        model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));	// it's a bit too big for our scene, so scale it down
+        model = glm::translate(model, glm::vec3(0.0f, 0.0f, -50.0f));
+        model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
         ourShader.setMat4("model", model);
         ourModel.Draw(ourShader);
 
-
-        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-        // -------------------------------------------------------------------------------
+        // Swap y eventos
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
+
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------
@@ -166,6 +175,19 @@ void processInput(GLFWwindow* window)
         camera.ProcessKeyboard(LEFT, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         camera.ProcessKeyboard(RIGHT, deltaTime);
+
+    
+    // Toggle con tecla K
+    if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS && !keyPressed)
+    {
+        spotlightOn = !spotlightOn;
+        keyPressed = true;
+    }
+    if (glfwGetKey(window, GLFW_KEY_K) == GLFW_RELEASE)
+    {
+        keyPressed = false;
+    }
+
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes

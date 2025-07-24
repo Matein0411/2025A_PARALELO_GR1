@@ -12,6 +12,7 @@
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
+Proyecto/models/FNAF/
 
 # Mono auto generated files
 mono_crash.*
@@ -76,6 +77,7 @@ StyleCopReport.xml
 *.ilk
 *.meta
 *.obj
+!circo.obj
 *.iobj
 *.pch
 *.pdb

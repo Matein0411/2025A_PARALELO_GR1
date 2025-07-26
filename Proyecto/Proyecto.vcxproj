@@ -150,6 +150,8 @@
     <Image Include="textures\Texture4.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="shaders\lightcube.fs" />
+    <None Include="shaders\lightcube.vs" />
     <None Include="shaders\shader_exercise16_mloading.fs" />
     <None Include="shaders\shader_exercise16_mloading.vs" />
   </ItemGroup>

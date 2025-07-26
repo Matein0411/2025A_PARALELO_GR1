@@ -76,5 +76,11 @@
     <None Include="shaders\shader_exercise16_mloading.vs">
       <Filter>Archivos de origen\shaders</Filter>
     </None>
+    <None Include="shaders\lightcube.fs">
+      <Filter>Archivos de origen\shaders</Filter>
+    </None>
+    <None Include="shaders\lightcube.vs">
+      <Filter>Archivos de origen\shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

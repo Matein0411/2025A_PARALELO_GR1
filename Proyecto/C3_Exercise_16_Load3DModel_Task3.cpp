@@ -1,19 +1,14 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-
 #include <learnopengl/shader.h>
 #include <learnopengl/camera.h>
 #include <learnopengl/model.h>
-
 #include <iostream>
-
-#define STB_IMAGE_IMPLEMENTATION 
+#define STB_IMAGE_IMPLEMENTATION
 #include <learnopengl/stb_image.h>
-
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
@@ -26,24 +21,24 @@ const unsigned int SCR_HEIGHT = 600;
 
 // camera
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
-
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
 
 // timing
-float deltaTime = 0.0f;
+float deltaTime = 0.0f; 
 float lastFrame = 0.0f;
 
-int main()
-{
+bool spotlightOn = false;
+bool keyPressed = false;
+
+int main() {
     // glfw: initialize and configure
     // ------------------------------
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
 #ifdef __APPLE__
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
@@ -51,8 +46,7 @@ int main()
     // glfw window creation
     // --------------------
     GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Exercise 16 Task 2", NULL, NULL);
-    if (window == NULL)
-    {
+    if (window == NULL) {
         std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
         return -1;
@@ -67,15 +61,14 @@ int main()
 
     // glad: load all OpenGL function pointers
     // ---------------------------------------
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-    {
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         std::cout << "Failed to initialize GLAD" << std::endl;
         return -1;
     }
 
     // tell stb_image.h to flip loaded texture's on the y-axis (before loading model).
-    //stbi_set_flip_vertically_on_load(true);
-
+    // stbi_set_flip_vertically_on_load(true);
+    
     // configure global opengl state
     // -----------------------------
     glEnable(GL_DEPTH_TEST);
@@ -83,69 +76,113 @@ int main()
     // build and compile shaders
     // -------------------------
     Shader ourShader("shaders/shader_exercise16_mloading.vs", "shaders/shader_exercise16_mloading.fs");
+    Shader lightCubeShader("shaders/lightcube.vs", "shaders/lightcube.fs");
 
     // load models
     Model ourModel("models/FNAF/FNAF.obj");
 
+    // Se dibujan lightcube
+    float cubeVertices[] = {
+        -0.5f, -0.5f, -0.5f,  0.5f, -0.5f, -0.5f,  0.5f,  0.5f, -0.5f,
+         0.5f,  0.5f, -0.5f, -0.5f,  0.5f, -0.5f, -0.5f, -0.5f, -0.5f,
+
+        -0.5f, -0.5f,  0.5f,  0.5f, -0.5f,  0.5f,  0.5f,  0.5f,  0.5f,
+         0.5f,  0.5f,  0.5f, -0.5f,  0.5f,  0.5f, -0.5f, -0.5f,  0.5f,
+
+        -0.5f,  0.5f,  0.5f, -0.5f,  0.5f, -0.5f, -0.5f, -0.5f, -0.5f,
+        -0.5f, -0.5f, -0.5f, -0.5f, -0.5f,  0.5f, -0.5f,  0.5f,  0.5f,
+
+         0.5f,  0.5f,  0.5f,  0.5f,  0.5f, -0.5f,  0.5f, -0.5f, -0.5f,
+         0.5f, -0.5f, -0.5f,  0.5f, -0.5f,  0.5f,  0.5f,  0.5f,  0.5f,
+
+        -0.5f, -0.5f, -0.5f,  0.5f, -0.5f, -0.5f,  0.5f, -0.5f,  0.5f,
+         0.5f, -0.5f,  0.5f, -0.5f, -0.5f,  0.5f, -0.5f, -0.5f, -0.5f,
+
+        -0.5f,  0.5f, -0.5f,  0.5f,  0.5f, -0.5f,  0.5f,  0.5f,  0.5f,
+         0.5f,  0.5f,  0.5f, -0.5f,  0.5f,  0.5f, -0.5f,  0.5f, -0.5f
+    };
+
+    unsigned int cubeVAO, cubeVBO;
+    glGenVertexArrays(1, &cubeVAO);
+    glGenBuffers(1, &cubeVBO);
+    glBindVertexArray(cubeVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), cubeVertices, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    glm::vec3 pointLightPositions[] = {
+        // Delante y atras // centro // izquierda y derecha
+        glm::vec3(20.3f, 1.5f, -64.0f), // Luz derecha estacionamiento
+        glm::vec3(20.3f, 1.5f, -56.0f) // Luz izquierda estacionamiento
+    };
+
+    glm::vec3 pointLightColors[] = {
+        glm::vec3(1.0f),
+        glm::vec3(1.0f)
+    };
+
+    float constant = 1.0f;
+    float linear = 0.35f;
+    float quadratic = 0.44f;
 
     // draw in wireframe
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-    glm::vec3 pointLightPositions[] = {
-    glm::vec3(20.0f, 5.0f, -62.0f),
-    glm::vec3(20.0f, 5.0f, -50.0f) // Luz 2 en el otro extremo
-    };
-
-    glm::vec3 pointLightColors[] = {
-        glm::vec3(1.0f, 0.85f, 0.6f),  // Luz cálida
-        glm::vec3(0.6f, 0.85f, 1.0f)   // Luz fría
-    };
-
-    float constant = 1.0f;
-    float linear = 0.09f;
-    float quadratic = 0.032f;
-
     camera.MovementSpeed = 10; //Optional. Modify the speed of the camera
+
     // render loop
     // -----------
-    while (!glfwWindowShouldClose(window))
-    {
+    while (!glfwWindowShouldClose(window)) {
+        
         // per-frame time logic
-        // --------------------
         float currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
         // input
-        // -----
         processInput(window);
 
         // render
-        // ------
         glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // don't forget to enable shader before setting uniforms
+        // activar shader y pasar variables uniformes
         ourShader.use();
+
+        // Posición del espectador
         ourShader.setVec3("viewPos", camera.Position);
 
+        // Pointlights parpadeantes
+        glm::vec3 flickeringColors[2];
         for (int i = 0; i < 2; ++i) {
             std::string base = "pointLights[" + std::to_string(i) + "]";
 
-            // Frecuencia y tiempo
-            float flickerSpeed = (i == 0) ? 6.0f : 4.3f;
+            float flickerSpeed = (i == 0) ? 5.0f : 7.0f;
             float flicker = (sin(glfwGetTime() * flickerSpeed + i * 10.0f) + 1.0f) / 2.0f;
-            float intensity = glm::mix(0.55f, 0.45f, flicker); // de tenue a fuerte
-
-            glm::vec3 flickeringColor = pointLightColors[i] * intensity;
+            float intensity = glm::mix(0.2f, 0.6f, flicker);
+            flickeringColors[i] = pointLightColors[i] * intensity;
 
             ourShader.setVec3(base + ".position", pointLightPositions[i]);
-            ourShader.setVec3(base + ".color", flickeringColor);
+            ourShader.setVec3(base + ".color", flickeringColors[i]);
             ourShader.setFloat(base + ".constant", constant);
             ourShader.setFloat(base + ".linear", linear);
             ourShader.setFloat(base + ".quadratic", quadratic);
         }
 
+        // Spotlight activado solo si se mantiene presionada la tecla 'K'
+        if (spotlightOn) {
+            ourShader.setVec3("lightPos", camera.Position);
+            ourShader.setVec3("lightDir", camera.Front);
+            ourShader.setFloat("cutOff", glm::cos(glm::radians(12.5f)));
+            ourShader.setFloat("outerCutOff", glm::cos(glm::radians(17.5f)));
+        }
+        else {
+            ourShader.setVec3("lightPos", glm::vec3(0.0f));
+            ourShader.setVec3("lightDir", glm::vec3(0.0f, -1.0f, 0.0f));
+            ourShader.setFloat("cutOff", glm::cos(glm::radians(0.0f)));
+            ourShader.setFloat("outerCutOff", glm::cos(glm::radians(0.0f)));
+        }
 
         // view/projection transformations
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
@@ -153,26 +190,29 @@ int main()
         ourShader.setMat4("projection", projection);
         ourShader.setMat4("view", view);
 
-        // render the loaded model
+        // render model
         glm::mat4 model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, 0.0f, -50.0f)); // translate it down so it's at the center of the scene
-        model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));	// it's a bit too big for our scene, so scale it down
+        model = glm::translate(model, glm::vec3(0.0f, 0.0f, -50.0f));
+        model = glm::scale(model, glm::vec3(0.1f));
         ourShader.setMat4("model", model);
-
-        // Ambiente luz parpadeante
-        float t = glfwGetTime();
-        float intensity = (sin(t * 2.5f) + sin(t * 4.7f + 3.0f) + cos(t * 3.3f)) / 3.0f;
-        intensity = (intensity + 1.0f) / 2.0f;
-        intensity = glm::mix(0.05f, 0.4f, intensity); // luz media "tétrica"
-
-        ourShader.setFloat("lightIntensity", intensity);
-        // Fin ambiente luz
-
         ourModel.Draw(ourShader);
 
+        // Dibujar cubitos para representar las point lights
+        lightCubeShader.use();
+        lightCubeShader.setMat4("projection", projection);
+        lightCubeShader.setMat4("view", view);
 
-        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-        // -------------------------------------------------------------------------------
+        glBindVertexArray(cubeVAO);
+        for (int i = 0; i < 2; ++i) {
+            glm::mat4 markerModel = glm::mat4(1.0f);
+            markerModel = glm::translate(markerModel, pointLightPositions[i]);
+            markerModel = glm::scale(markerModel, glm::vec3(0.3f));
+            lightCubeShader.setMat4("model", markerModel);
+            lightCubeShader.setVec3("lightColor", flickeringColors[i]);
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+        }
+
+        // Swap y eventos
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
@@ -185,11 +225,9 @@ int main()
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
-void processInput(GLFWwindow* window)
-{
+void processInput(GLFWwindow* window) {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
-
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
         camera.ProcessKeyboard(FORWARD, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
@@ -198,12 +236,20 @@ void processInput(GLFWwindow* window)
         camera.ProcessKeyboard(LEFT, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         camera.ProcessKeyboard(RIGHT, deltaTime);
+
+    // Toggle con tecla K
+    if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS && !keyPressed) {
+        spotlightOn = !spotlightOn;
+        keyPressed = true;
+    }
+    if (glfwGetKey(window, GLFW_KEY_K) == GLFW_RELEASE) {
+        keyPressed = false;
+    }
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
 // ---------------------------------------------------------------------------------------------
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
+void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
     // make sure the viewport matches the new window dimensions; note that width and 
     // height will be significantly larger than specified on retina displays.
     glViewport(0, 0, width, height);
@@ -211,10 +257,8 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 
 // glfw: whenever the mouse moves, this callback is called
 // -------------------------------------------------------
-void mouse_callback(GLFWwindow* window, double xpos, double ypos)
-{
-    if (firstMouse)
-    {
+void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
+    if (firstMouse) {
         lastX = xpos;
         lastY = ypos;
         firstMouse = false;
@@ -231,7 +275,6 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 
 // glfw: whenever the mouse scroll wheel scrolls, this callback is called
 // ----------------------------------------------------------------------
-void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
-{
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
     camera.ProcessMouseScroll(yoffset);
 }

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Foxy The Pirate Fox
+* source:	https://sketchfab.com/3d-models/foxy-the-pirate-fox-9df5791d19294be090d086dee71f0e22
+* author:	FortniteBattlePass3000 (https://sketchfab.com/FortniteBattlePass3000)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Foxy The Pirate Fox" (https://sketchfab.com/3d-models/foxy-the-pirate-fox-9df5791d19294be090d086dee71f0e22) by FortniteBattlePass3000 (https://sketchfab.com/FortniteBattlePass3000) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

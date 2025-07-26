@@ -1,0 +1,163 @@
+# Blender 4.4.3 MTL File: 'None'
+# www.blender.org
+
+newmtl Bon1
+Ns 19.405830
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Bon1_baseColor.png
+
+newmtl Bon2
+Ns 35.134796
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Bon2_baseColor.png
+
+newmtl BonnieEye
+Ns 43.627224
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Bon2_baseColor.png
+map_Ke Bon2_baseColor.png
+
+newmtl Gums
+Ns 42.545753
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Nose_baseColor.png
+
+newmtl Nose
+Ns 30.084282
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Nose_baseColor.png
+
+newmtl Teeth
+Ns 43.920303
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Teeth_baseColor.png
+map_Ke Teeth_emissive.png
+
+newmtl blackwire
+Ns 29.806103
+Ka 1.000000 1.000000 1.000000
+Kd 0.480920 0.800688 0.414435
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl endometal2
+Ns 21.820717
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Bon1_baseColor.png
+map_Ke Bon2_baseColor.png
+
+newmtl endometal3_ref
+Ns 23.812475
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Bon1_baseColor.png
+map_Ke Bon1_baseColor.png
+
+newmtl endometal5
+Ns 18.553560
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Bon1_baseColor.png
+
+newmtl endotooth
+Ns 50.884552
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd endotooth_baseColor.png
+map_Ke Bon1_baseColor.png
+map_Bump -bm 1.000000 endotooth_normal.png
+
+newmtl eyemetal
+Ns 14.414824
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Teeth_emissive.png
+
+newmtl eyemetal2
+Ns 26.039520
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Teeth_emissive.png
+
+newmtl material
+Ns 24.389053
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Teeth_emissive.png
+
+newmtl redwire
+Ns 31.253313
+Ka 1.000000 1.000000 1.000000
+Kd 0.720790 0.700561 0.934139
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl whitewire
+Ns 21.134970
+Ka 1.000000 1.000000 1.000000
+Kd 0.975706 0.476063 0.631451
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2

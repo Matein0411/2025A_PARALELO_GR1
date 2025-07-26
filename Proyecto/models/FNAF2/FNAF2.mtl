@@ -1,0 +1,1003 @@
+# Blender 4.5.0 MTL File: 'None'
+# www.blender.org
+
+newmtl Buttons_buttonlit
+Ns 22.288633
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Buttons_buttonlit_baseColor.png
+map_Ke Buttons_buttonlit_baseColor.png
+
+newmtl Buttons_buttons
+Ns 45.275455
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Buttons_buttons_baseColor.png
+
+newmtl Cupcake_Cupcake
+Ns 27.787720
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Cupcake_Cupcake_baseColor.png
+map_Ke Cupcake_Cupcake_emissive.png
+
+newmtl Cupcake_white
+Ns 28.570763
+Ka 1.000000 1.000000 1.000000
+Kd 0.621873 0.726548 0.529365
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl DangleWires11_DangleWire
+Ns 26.522226
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd DangleWires3_DangleWire_baseColor.png
+
+newmtl DangleWires1_DangleWire
+Ns 31.268995
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd DangleWires3_DangleWire_baseColor.png
+
+newmtl DangleWires21_DangleWire
+Ns 41.122585
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd DangleWires3_DangleWire_baseColor.png
+
+newmtl DangleWires2_DangleWire
+Ns 35.767433
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd DangleWires3_DangleWire_baseColor.png
+
+newmtl DangleWires31_DangleWire
+Ns 25.927299
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd DangleWires3_DangleWire_baseColor.png
+
+newmtl DangleWires3_DangleWire
+Ns 31.263767
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd DangleWires3_DangleWire_baseColor.png
+
+newmtl DataMonitor_Datamonitor
+Ns 48.182056
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd DataMonitor_Datamonitor_baseColor.png
+
+newmtl DoorFrameB_Frame
+Ns 45.224842
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd DoorFrameT_Frame_baseColor.png
+
+newmtl DoorFrameT_Frame
+Ns 15.141780
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd DoorFrameT_Frame_baseColor.png
+
+newmtl DrawingFunDay10_fnaf1posters
+Ns 34.205067
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd PosterBonnie_fnaf1posters_baseColor.png
+
+newmtl DrawingFunDay3_fnaf1posters
+Ns 35.827339
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd PosterBonnie_fnaf1posters_baseColor.png
+
+newmtl DrawingFunDay5_fnaf1posters
+Ns 41.711990
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd PosterBonnie_fnaf1posters_baseColor.png
+
+newmtl DrawingFunDay6_fnaf1posters
+Ns 21.697098
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd PosterBonnie_fnaf1posters_baseColor.png
+
+newmtl DrawingFunDay7_fnaf1posters
+Ns 32.323124
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd PosterBonnie_fnaf1posters_baseColor.png
+
+newmtl DrawingFunDay8_fnaf1posters
+Ns 42.636238
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd PosterBonnie_fnaf1posters_baseColor.png
+
+newmtl DrawingFunDay9_fnaf1posters
+Ns 29.880919
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd PosterBonnie_fnaf1posters_baseColor.png
+
+newmtl DrinkCupFull_DrinkCup
+Ns 32.770664
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd DrinkCupFull_DrinkCup_baseColor.png
+
+newmtl FNAF1DoorWinFrame_Office01Door
+Ns 18.787647
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd FNAF1Door_Office01Door_baseColor.png
+
+newmtl FNAF1Door_Office01Door
+Ns 39.058556
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd FNAF1Door_Office01Door_baseColor.png
+
+newmtl FNAF1MonitorBoard_MonitorBoardLight
+Ns 14.454555
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd FNAF1MonitorBoard_monitorboard_baseColor.png
+map_Ke FNAF1MonitorBoard_MonitorBoardLight_emissive.png
+
+newmtl FNAF1MonitorBoard_monitorboard
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd FNAF1MonitorBoard_monitorboard_baseColor.png
+map_Bump -bm 1.000000 FNAF1MonitorBoard_monitorboard_normal.png
+
+newmtl FoxySign_FoxySign
+Ns 26.735394
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd FoxySign_FoxySign_baseColor.png
+
+newmtl FoxySign_FoxySign2
+Ns 33.797577
+Ka 1.000000 1.000000 1.000000
+Kd 0.855510 0.719414 0.749613
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 0.000000
+illum 9
+
+newmtl KidsChair_KidsChair
+Ns 51.854916
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd KidsChair_KidsChair_baseColor.png
+
+newmtl KidsTable_KidsTable
+Ns 44.072533
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd KidsTable_KidsTable_baseColor.png
+
+newmtl Locker_Locker
+Ns 36.632107
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Locker_Locker_baseColor.png
+
+newmtl MensSign_bathroomsign
+Ns 34.610519
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd MensSign_bathroomsign_baseColor.png
+
+newmtl Merged_materials
+Ns 159.999985
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.006850 10.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd Merged_materials_baseColor.png
+map_d Merged_materials_baseColor.png
+
+newmtl Monitor01_Monitor01
+Ns 38.211052
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Monitor01_Monitor01_baseColor.png
+
+newmtl Monitor01_screenblank
+Ns 42.330727
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Monitor01_screenblank_baseColor.png
+map_Ke Monitor01_screenblank_baseColor.png
+
+newmtl Monitor01big_Monitor01
+Ns 38.033737
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Monitor01_Monitor01_baseColor.png
+
+newmtl Monitor01big_screenblank
+Ns 37.435349
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Monitor01_screenblank_baseColor.png
+map_Ke Monitor01_screenblank_baseColor.png
+
+newmtl Monitor0_Monitor0
+Ns 18.230761
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Monitor0_Monitor0_baseColor.png
+
+newmtl Monitor0big_Monitor0
+Ns 52.185017
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Monitor0_Monitor0_baseColor.png
+
+newmtl MonitorCams_Monitor01
+Ns 17.603350
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Monitor01_Monitor01_baseColor.png
+
+newmtl MonitorCams_static
+Ns 53.137581
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Monitor01_screenblank_baseColor.png
+map_Ke Monitor01_screenblank_baseColor.png
+
+newmtl OfficeDesk_Desk2
+Ns 46.905205
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd OfficeDesk_Desk2_baseColor.png
+
+newmtl OfficePosterCelebrate_fnaf1posters
+Ns 27.560812
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd PosterBonnie_fnaf1posters_baseColor.png
+
+newmtl OldClock_Clock
+Ns 43.987087
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd OldClock_Clock_baseColor.png
+
+newmtl PanelBoard_TechPanel
+Ns 30.049202
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd crate4_Crate4_baseColor.png
+
+newmtl PartyHat1_KidsTable
+Ns 38.161549
+Ka 1.000000 1.000000 1.000000
+Kd 0.412583 0.902205 0.893909
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl PartyHat1_PartyHatRW
+Ns 16.194569
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd PartyHat3_PartyHatMW_baseColor.png
+
+newmtl PartyHat2_KidsTable
+Ns 35.497288
+Ka 1.000000 1.000000 1.000000
+Kd 0.783565 0.785863 0.561416
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl PartyHat2_PartyHatMG
+Ns 21.648802
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd PartyHat2_PartyHatMG_baseColor.png
+
+newmtl PartyHat3_KidsTable
+Ns 19.246456
+Ka 1.000000 1.000000 1.000000
+Kd 0.966553 0.439493 0.644805
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl PartyHat3_PartyHatMW
+Ns 11.469212
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd PartyHat3_PartyHatMW_baseColor.png
+
+newmtl PartyHat4_KidsTable
+Ns 50.586231
+Ka 1.000000 1.000000 1.000000
+Kd 0.775344 0.957325 0.951384
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl PartyHat4_PartyHatBW
+Ns 46.512516
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd PartyHat6_PartyHatRM_baseColor.png
+
+newmtl PartyHat5_KidsTable
+Ns 25.081326
+Ka 1.000000 1.000000 1.000000
+Kd 0.779825 0.585490 0.858905
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl PartyHat5_PartyHatRY
+Ns 20.762014
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd PartyHat2_PartyHatMG_baseColor.png
+
+newmtl PartyHat6_KidsTable
+Ns 42.152634
+Ka 1.000000 1.000000 1.000000
+Kd 0.751772 0.861644 0.860173
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl PartyHat6_PartyHatRM
+Ns 34.878052
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd PartyHat6_PartyHatRM_baseColor.png
+
+newmtl PendantLight2_copper
+Ns 26.267954
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd PendantLight2_copper_baseColor.png
+
+newmtl PendantLight2_emissive
+Ns 24.954920
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 0.668641 0.150901
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl PendantLight2_red
+Ns 34.171299
+Ka 1.000000 1.000000 1.000000
+Kd 0.796155 0.732317 0.853891
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl PendantLight3_Black
+Ns 32.420261
+Ka 1.000000 1.000000 1.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl PendantLight3_Emissive
+Ns 19.437796
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 0.688175 0.222324
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl PendantLight4_OfficeLight
+Ns 24.766171
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd PendantLight4_OfficeLight_baseColor.png
+
+newmtl Phone_Orange
+Ns 16.969189
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ni 1.500000
+illum 2
+map_Kd Phone_Orange_baseColor.png
+map_Ke Phone_Orange_emissive.png
+map_d Phone_Orange_baseColor.png
+
+newmtl Phone_Phone
+Ns 43.227287
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Phone_Phone_baseColor.png
+
+newmtl PirateCoveCurtainSmall_foxycurtain
+Ns 20.713261
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd PirateCoveCurtainSmall_foxycurtain_baseColor.png
+
+newmtl PosterBonnie_fnaf1posters
+Ns 42.058456
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd PosterBonnie_fnaf1posters_baseColor.png
+
+newmtl PosterChica_fnaf1posters
+Ns 18.860428
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd PosterBonnie_fnaf1posters_baseColor.png
+
+newmtl PosterFreddy_fnaf1posters
+Ns 38.722145
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd PosterBonnie_fnaf1posters_baseColor.png
+
+newmtl PosterLetsParty_fnaf1posters
+Ns 40.255871
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd PosterBonnie_fnaf1posters_baseColor.png
+
+newmtl PosterRules_fnaf1posters
+Ns 19.962917
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd PosterBonnie_fnaf1posters_baseColor.png
+
+newmtl RepairDoorFrame_RepairDoor
+Ns 56.353268
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd RepairDoor_RepairDoor_baseColor.png
+
+newmtl RepairDoor_RepairDoor
+Ns 24.811028
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd RepairDoor_RepairDoor_baseColor.png
+
+newmtl RepairSign_RepairDoor
+Ns 43.721642
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd RepairDoor_RepairDoor_baseColor.png
+
+newmtl Shelves_Shelves
+Ns 43.662411
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd crate4_Crate4_baseColor.png
+
+newmtl Speakersmall_Speaker
+Ns 34.054035
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Speakersmall_Speaker_baseColor.png
+
+newmtl StageSmall_Floor
+Ns 19.987633
+Ka 1.000000 1.000000 1.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl StageSmall_StageRim
+Ns 50.352623
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd StageSmall_StageRim_baseColor.png
+
+newmtl StarCluster2_Star
+Ns 40.966301
+Ka 1.000000 1.000000 1.000000
+Kd 0.783914 0.783914 0.783914
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl StarCluster3_Star
+Ns 47.780319
+Ka 1.000000 1.000000 1.000000
+Kd 0.605328 0.605328 0.605328
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl TEAM_VRLEAK1
+Ns 32.000008
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd TEAM_VRLEAK1_baseColor.png
+
+newmtl TV1_TV1
+Ns 34.029949
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd TV1_TV1_baseColor.png
+
+newmtl TV1big_TV1
+Ns 23.960291
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd TV1_TV1_baseColor.png
+
+newmtl TV3_TV3
+Ns 22.066069
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd TV3_TV3_baseColor.png
+
+newmtl WallPizza2_wallpizzas
+Ns 51.390163
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd WallPizza_wallpizzas_baseColor.png
+
+newmtl WallPizza3_wallpizzas
+Ns 16.040730
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd WallPizza_wallpizzas_baseColor.png
+
+newmtl WallPizza_wallpizzas
+Ns 12.399300
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd WallPizza_wallpizzas_baseColor.png
+
+newmtl WelderSet_WelderSet
+Ns 47.868935
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd WelderSet_WelderSet_baseColor.png
+
+newmtl cardboardbox1_CardboardBoxes
+Ns 34.573338
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd cardboardbox3_CardboardBoxes_baseColor.png
+
+newmtl cardboardbox3_CardboardBoxes
+Ns 43.407188
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd cardboardbox3_CardboardBoxes_baseColor.png
+
+newmtl container_Container
+Ns 55.774662
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd container_Container_baseColor.png
+
+newmtl crate4_Crate4
+Ns 29.041124
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd crate4_Crate4_baseColor.png
+
+newmtl crumpledpaper6_Newspaper
+Ns 35.427563
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd crumpledpaper6_Newspaper_baseColor.png
+
+newmtl fan_DeskFan
+Ns 23.468935
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd fan_DeskFan_baseColor.png
+
+newmtl fireextinguisher_fireextinguisher
+Ns 38.550858
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd fireextinguisher_fireextinguisher_baseColor.png
+
+newmtl paper_Newspaper
+Ns 14.492402
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd crumpledpaper6_Newspaper_baseColor.png
+
+newmtl presentsmall_wrapping
+Ns 25.960421
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd presentsmall_wrapping_baseColor.png
+
+newmtl presentsmall_wrappingred
+Ns 46.116867
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd presentsmall_wrappingred_baseColor.png
+
+newmtl repairshelf_repairshelving
+Ns 52.492210
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd repairtable_repairshelving_baseColor.png
+
+newmtl repairtable_repairshelving
+Ns 17.361074
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd repairtable_repairshelving_baseColor.png
+
+newmtl womensSign_bathroomsign
+Ns 18.694624
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd MensSign_bathroomsign_baseColor.png

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Bonnie the bunny
+* source:	https://sketchfab.com/3d-models/bonnie-the-bunny-2edfbe3026564013b5e3bcdffbe309cf
+* author:	Username838383 (https://sketchfab.com/Username838383)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Bonnie the bunny" (https://sketchfab.com/3d-models/bonnie-the-bunny-2edfbe3026564013b5e3bcdffbe309cf) by Username838383 (https://sketchfab.com/Username838383) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

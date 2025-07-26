@@ -21,11 +21,11 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void processInput(GLFWwindow* window);
 
 // Settings
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
+const unsigned int SCR_WIDTH = 1280;
+const unsigned int SCR_HEIGHT = 720;
 
 // Camera
-Camera camera(glm::vec3(0.0f, 0.0f, 10.0f));
+Camera camera(glm::vec3(0.0f, 10.0f, 10.0f));
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
@@ -73,7 +73,7 @@ int main()
     Shader ourShader("shaders/shader_exercise16_mloading.vs", "shaders/shader_exercise16_mloading.fs");
 
     // Load models
-    Model sceneModel("models/FNAF/FNAF/FNAF.obj");
+    Model sceneModel("models/FNAF2/FNAF2.obj");
     Model foxyModel("models/foxy_the_pirate_fox/foxy.obj");
     Model jackModel("models/jack-o-bonnie_rig/osoRoto.obj");
 	Model frankeyModel("models/frankey/zomb.obj");
@@ -151,7 +151,7 @@ int main()
     stbi_image_free(frankeyData);
 
 
-    camera.MovementSpeed = 10.0f;
+    camera.MovementSpeed = 6.0f;
 
     // Render loop
     while (!glfwWindowShouldClose(window))
@@ -186,8 +186,8 @@ int main()
         ourShader.setFloat("emissionIntensity", 0.0f); // Intensidad cero
 
         glm::mat4 modelMatrix = glm::mat4(1.0f);
-        modelMatrix = glm::translate(modelMatrix, glm::vec3(-10.0f, -3.5f, -50.0f));
-        modelMatrix = glm::scale(modelMatrix, glm::vec3(0.07f));
+        modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 0.0f, 0.0f));
+        modelMatrix = glm::scale(modelMatrix, glm::vec3(4.0f));
         ourShader.setMat4("model", modelMatrix);
         sceneModel.Draw(ourShader);
 
@@ -201,8 +201,10 @@ int main()
         ourShader.setFloat("emissionIntensity", 0.0f); // Intensidad cero
         
         glm::mat4 freddyMatrix = glm::mat4(1.0f);
-        freddyMatrix = glm::translate(freddyMatrix, glm::vec3(8.0f, -3.5f, -55.0f)); // Posición 
-        freddyMatrix = glm::scale(freddyMatrix, glm::vec3(0.013f)); // Escala 
+		
+        freddyMatrix = glm::translate(freddyMatrix, glm::vec3(0.0f, 7.0f, -156.0f)); // Posición 
+        freddyMatrix = glm::rotate(freddyMatrix, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        freddyMatrix = glm::scale(freddyMatrix, glm::vec3(0.30f)); // Escala 
         ourShader.setMat4("model", freddyMatrix);
 
         // Seleccionar frame actual basado en el tiempo
@@ -219,14 +221,15 @@ int main()
 
         vector<glm::vec3> foxyPositions = {
             //glm::vec3(8.0f, -3.5f, -56.0f),
-            glm::vec3(5.0f, -3.5f, -60.0f),
-            glm::vec3(11.0f, -3.5f, -58.0f)
+            glm::vec3(19.0f, 1.0f, 27.0f),
+           // glm::vec3(19.0f, 9.0f, 27.0f)
         };
 
         for (const auto& pos : foxyPositions) {
             glm::mat4 model = glm::mat4(1.0f);
             model = glm::translate(model, pos);
-            model = glm::scale(model, glm::vec3(0.4f));
+			model = glm::rotate(model, glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f)); // Rotación para alinear el modelo
+            model = glm::scale(model, glm::vec3(6.5f));
             ourShader.setMat4("model", model);
             foxyModel.Draw(ourShader);
         }
@@ -241,14 +244,15 @@ int main()
 
         std::vector<glm::vec3> jackPositions = {
             //glm::vec3(8.0f, -3.5f, -53.0f),
-            glm::vec3(6.0f, -3.5f, -50.0f),
-            glm::vec3(10.0f, -3.5f, -51.0f)
+            glm::vec3(59.113, 1.0, -119.036),
+            //glm::vec3(-55.7778, 1.0, -142.388)
         };
 
         for (const auto& pos : jackPositions) {
             glm::mat4 model = glm::mat4(1.0f);
             model = glm::translate(model, pos);
-            model = glm::scale(model, glm::vec3(0.3f));
+			model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)); 
+            model = glm::scale(model, glm::vec3(4.5f));
             ourShader.setMat4("model", model);
             jackModel.Draw(ourShader);
         }
@@ -263,14 +267,14 @@ int main()
 
         std::vector<glm::vec3> frankeyPositions = {
             //glm::vec3(-6.0f, -2.5f, -57.0f),
-            glm::vec3(-4.0f, -2.5f, -54.0f),
-            glm::vec3(-2.0f, -2.5f, -55.0f)
+            glm::vec3(-55.7778, 16.0, -110.388),
+           // glm::vec3(-2.0f, -2.5f, -55.0f)
         };
 
         for (const auto& pos : frankeyPositions) {
             glm::mat4 model = glm::mat4(1.0f);
             model = glm::translate(model, pos);
-            model = glm::scale(model, glm::vec3(1.2f));
+            model = glm::scale(model, glm::vec3(33.0f));
             ourShader.setMat4("model", model);
             frankeyModel.Draw(ourShader);
         }
@@ -285,14 +289,15 @@ int main()
 
         std::vector<glm::vec3> bunnyPositions = {
             //glm::vec3(10.0f, -3.5f, -60.0f),
-            glm::vec3(7.0f, -3.5f, -62.0f),
-            glm::vec3(13.0f, -3.5f, -61.0f)
+            glm::vec3(-58.0f, 5.0f, -100.0f),
+           // glm::vec3(13.0f, -3.5f, -61.0f)
         };
 
         for (const auto& pos : bunnyPositions) {
             glm::mat4 model = glm::mat4(1.0f);
             model = glm::translate(model, pos);
-            model = glm::scale(model, glm::vec3(0.8f));
+            model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+            model = glm::scale(model, glm::vec3(6.5f));
             ourShader.setMat4("model", model);
             bunnyModel.Draw(ourShader);
         }
@@ -320,6 +325,19 @@ void processInput(GLFWwindow* window)
         camera.ProcessKeyboard(LEFT, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         camera.ProcessKeyboard(RIGHT, deltaTime);
+    static bool oPressedLastFrame = false;
+    if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS) {
+        if (!oPressedLastFrame) {
+            std::cout << "Camara: ("
+                << camera.Position.x << ", "
+                << camera.Position.y << ", "
+                << camera.Position.z << ")\n";
+            oPressedLastFrame = true;
+        }
+    }
+    else {
+        oPressedLastFrame = false;
+    }
 }
 
 // Resize viewport

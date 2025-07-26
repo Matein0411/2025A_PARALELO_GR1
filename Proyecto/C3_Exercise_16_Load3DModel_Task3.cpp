@@ -126,6 +126,16 @@ int main()
         model = glm::translate(model, glm::vec3(0.0f, 0.0f, -50.0f)); // translate it down so it's at the center of the scene
         model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));	// it's a bit too big for our scene, so scale it down
         ourShader.setMat4("model", model);
+
+        // agregado nuevo
+        float t = glfwGetTime();
+        float intensity = (sin(t * 2.5f) + sin(t * 4.7f + 3.0f) + cos(t * 3.3f)) / 3.0f;
+        intensity = (intensity + 1.0f) / 2.0f; // normalizar entre 0 y 1
+        intensity = glm::mix(0.05f, 0.4f, intensity); // luz tenue y tétrica
+
+        ourShader.setFloat("lightIntensity", intensity);
+        // fin agregado nuevo
+
         ourModel.Draw(ourShader);
 
 

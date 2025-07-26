@@ -114,7 +114,7 @@ int main() {
     glm::vec3 pointLightPositions[] = {
         // Delante y atras // centro // izquierda y derecha
         glm::vec3(20.3f, 1.5f, -64.0f), // Luz derecha estacionamiento
-        glm::vec3(20.3f, 1.5f, -56.0f) // Luz izquierda estacionamiento
+        glm::vec3(20.3f, 1.5f, -55.85f) // Luz izquierda estacionamiento
     };
 
     glm::vec3 pointLightColors[] = {
@@ -192,7 +192,7 @@ int main() {
 
         // render model
         glm::mat4 model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, 0.0f, -50.0f));
+        model = glm::translate(model, glm::vec3(0.0f, 0.0f, -50.0f)); // Coordenada modelo
         model = glm::scale(model, glm::vec3(0.1f));
         ourShader.setMat4("model", model);
         ourModel.Draw(ourShader);

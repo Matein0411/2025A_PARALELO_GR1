@@ -41,11 +41,11 @@ Ser reconocidos como pioneros en el desarrollo de simulaciones de terror educati
 - ✅ Renderizado 3D en tiempo real con OpenGL.
 - 🔦 Spotlight activado/desactivado con tecla `K`.
 
-![alt text](image-1.png)
+![alt text](assets/img2.jpeg)
 
 - 👾 Modelos importados de animatrónicos y escenarios FNAF.
 
-![alt text](image-2.png)
+![alt text](assets/img1.jpeg)
 
 - 💡 Iluminación realista con shaders personalizados.
 - 🎧 Sonido 3D ambiental (pasos).
@@ -67,7 +67,7 @@ Ser reconocidos como pioneros en el desarrollo de simulaciones de terror educati
 
 **Foxxy**: <https://sketchfab.com/3d-models/foxy-the-pirate-fox-9df5791d19294be090d086dee71f0e22>
 
---
+---
 
 ## 🧑‍💻 Autor(es)
 

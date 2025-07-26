@@ -177,9 +177,9 @@ int main()
         ourShader.use();
 
         // Set camera/view/projection matrices
-        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom),
-            (float)SCR_WIDTH / (float)SCR_HEIGHT,
-            0.1f, 100.0f);
+        //glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom),
+          //  (float)SCR_WIDTH / (float)SCR_HEIGHT,
+          //  0.1f, 100.0f);
 
         // Posición del espectador
         // ourShader.setVec3("viewPos", camera.Position);
@@ -199,8 +199,10 @@ int main()
             ourShader.setFloat("outerCutOff", glm::cos(glm::radians(0.0f)));
         }
 
-        // view/projection transformations
+        // Definir la matriz de proyección una sola vez
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+
+        // Transformaciones de vista/proyección
         glm::mat4 view = camera.GetViewMatrix();
         ourShader.setMat4("projection", projection);
         ourShader.setMat4("view", view);
@@ -329,7 +331,6 @@ int main()
         }
 
         // Swap buffers and poll events
-        model_SpotLight
         glfwSwapBuffers(window);
         glfwPollEvents();
     }

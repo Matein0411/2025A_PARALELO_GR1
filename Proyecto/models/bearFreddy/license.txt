@@ -1,0 +1,11 @@
+Model Information:
+* title:	NightmareFredbear Five Night's At Freddy's:HW
+* source:	https://sketchfab.com/3d-models/nightmarefredbear-five-nights-at-freddyshw-2b2462e7f0984837bc8d4d5c524619ee
+* author:	MrUnknown (https://sketchfab.com/MrUnknownP3dAnimations)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "NightmareFredbear Five Night's At Freddy's:HW" (https://sketchfab.com/3d-models/nightmarefredbear-five-nights-at-freddyshw-2b2462e7f0984837bc8d4d5c524619ee) by MrUnknown (https://sketchfab.com/MrUnknownP3dAnimations) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

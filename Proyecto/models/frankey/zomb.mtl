@@ -1,0 +1,65 @@
+# Blender 4.4.3 MTL File: 'None'
+# www.blender.org
+
+newmtl Franken_Toy_Attack
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Franken_Toy_Workshop_baseColor.jpeg
+map_Ke Franken_Toy_Workshop_emissive.png
+map_Bump -bm 1.000000 Franken_Toy_Workshop_normal.png
+
+newmtl Franken_Toy_Black
+Ns 1.788855
+Ka 1.000000 1.000000 1.000000
+Kd 0.002383 0.000038 0.000038
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl Franken_Toy_Eyes
+Ns 1.788855
+Ka 1.000000 1.000000 1.000000
+Kd 0.181747 0.950694 0.001887
+Ks 0.275732 0.275732 0.275732
+Ke 0.108248 1.355920 0.002814
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl Franken_Toy_Glass_Attack
+Ns 1.788855
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Franken_Toy_Workshop_baseColor.jpeg
+
+newmtl Franken_Toy_Glass_Workshop
+Ns 1.788855
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Franken_Toy_Workshop_baseColor.jpeg
+map_Bump -bm 1.000000 Franken_Toy_Workshop_normal.png
+
+newmtl Franken_Toy_Workshop
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.265604 0.265604 0.265604
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Franken_Toy_Workshop_baseColor.jpeg
+map_Ke Franken_Toy_Workshop_emissive.png
+map_Bump -bm 1.000000 Franken_Toy_Workshop_normal.png

@@ -91,6 +91,19 @@ int main()
     // draw in wireframe
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
+    glm::vec3 pointLightPositions[] = {
+    glm::vec3(20.0f, 5.0f, -62.0f),
+    glm::vec3(20.0f, 5.0f, -50.0f) // Luz 2 en el otro extremo
+    };
+
+    glm::vec3 pointLightColors[] = {
+        glm::vec3(1.0f, 0.85f, 0.6f),  // Luz cálida
+        glm::vec3(0.6f, 0.85f, 1.0f)   // Luz fría
+    };
+
+    float constant = 1.0f;
+    float linear = 0.09f;
+    float quadratic = 0.032f;
 
     camera.MovementSpeed = 10; //Optional. Modify the speed of the camera
     // render loop
@@ -114,6 +127,25 @@ int main()
 
         // don't forget to enable shader before setting uniforms
         ourShader.use();
+        ourShader.setVec3("viewPos", camera.Position);
+
+        for (int i = 0; i < 2; ++i) {
+            std::string base = "pointLights[" + std::to_string(i) + "]";
+
+            // Frecuencia y tiempo
+            float flickerSpeed = (i == 0) ? 6.0f : 4.3f;
+            float flicker = (sin(glfwGetTime() * flickerSpeed + i * 10.0f) + 1.0f) / 2.0f;
+            float intensity = glm::mix(0.55f, 0.45f, flicker); // de tenue a fuerte
+
+            glm::vec3 flickeringColor = pointLightColors[i] * intensity;
+
+            ourShader.setVec3(base + ".position", pointLightPositions[i]);
+            ourShader.setVec3(base + ".color", flickeringColor);
+            ourShader.setFloat(base + ".constant", constant);
+            ourShader.setFloat(base + ".linear", linear);
+            ourShader.setFloat(base + ".quadratic", quadratic);
+        }
+
 
         // view/projection transformations
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
@@ -127,14 +159,14 @@ int main()
         model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));	// it's a bit too big for our scene, so scale it down
         ourShader.setMat4("model", model);
 
-        // agregado nuevo
+        // Ambiente luz parpadeante
         float t = glfwGetTime();
         float intensity = (sin(t * 2.5f) + sin(t * 4.7f + 3.0f) + cos(t * 3.3f)) / 3.0f;
-        intensity = (intensity + 1.0f) / 2.0f; // normalizar entre 0 y 1
-        intensity = glm::mix(0.05f, 0.4f, intensity); // luz tenue y tétrica
+        intensity = (intensity + 1.0f) / 2.0f;
+        intensity = glm::mix(0.05f, 0.4f, intensity); // luz media "tétrica"
 
         ourShader.setFloat("lightIntensity", intensity);
-        // fin agregado nuevo
+        // Fin ambiente luz
 
         ourModel.Draw(ourShader);
 

@@ -34,6 +34,11 @@ bool firstMouse = true;
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
 
+bool spotlightOn = false;
+bool keyPressed = false;
+
+
+
 int main()
 {
     // Init GLFW
@@ -80,10 +85,10 @@ int main()
     Model bunnyModel("models/bunny/bunny.obj");
 	
     //********************************************************************
-    // Cargar frames de animaci髇 para Freddy
+    // Cargar frames de animaci贸n para Freddy
     std::vector<Model> freddyFrames;
-    int totalFrames = 18; // N鷐ero de frames de animaci髇
-    float fps = 13.0f;    // Velocidad de animaci髇
+    int totalFrames = 18; // N煤mero de frames de animaci贸n
+    float fps = 13.0f;    // Velocidad de animaci贸n
 
     for (int i = 1; i <= totalFrames; ++i) {
         std::stringstream ss;
@@ -92,7 +97,7 @@ int main()
     }
 	//*******************************************************************
 
-    // 1. Mapa de emisi髇 de Foxy
+    // 1. Mapa de emisi贸n de Foxy
     unsigned int emissionMap;
     glGenTextures(1, &emissionMap);
     glBindTexture(GL_TEXTURE_2D, emissionMap);
@@ -111,7 +116,7 @@ int main()
     else { std::cout << "Error al cargar mapaOJOS.png\n"; }
     stbi_image_free(data);
 
-    // 2. Mapa de emisi髇 de Jack-O-Bonnie
+    // 2. Mapa de emisi贸n de Jack-O-Bonnie
     unsigned int jackEmissionMap;
     glGenTextures(1, &jackEmissionMap);
     glBindTexture(GL_TEXTURE_2D, jackEmissionMap);
@@ -130,11 +135,11 @@ int main()
     else { std::cout << "Error al cargar emissionJack.png\n"; }
     stbi_image_free(jackData);
 
-    // 3. Mapa de emisi髇 de Frankey
+    // 3. Mapa de emisi贸n de Frankey
     unsigned int frankeyEmissionMap;
     glGenTextures(1, &frankeyEmissionMap);
     glBindTexture(GL_TEXTURE_2D, frankeyEmissionMap);
-	// Configurar par醡etros de textura
+	// Configurar par谩metros de textura
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
@@ -150,12 +155,12 @@ int main()
     else { std::cout << "Error al cargar green.png\n"; }
     stbi_image_free(frankeyData);
 
-
     camera.MovementSpeed = 6.0f;
 
     // Render loop
     while (!glfwWindowShouldClose(window))
     {
+
         // Time logic
         float currentTime = glfwGetTime();
         deltaTime = currentTime - lastFrame;
@@ -175,13 +180,34 @@ int main()
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom),
             (float)SCR_WIDTH / (float)SCR_HEIGHT,
             0.1f, 100.0f);
+
+        // Posici贸n del espectador
+        // ourShader.setVec3("viewPos", camera.Position);
+
+        // Spotlight activado solo si se mantiene presionada la tecla 'K'
+        if (spotlightOn) {
+            ourShader.setVec3("lightPos", camera.Position);
+            ourShader.setVec3("lightDir", camera.Front);
+            ourShader.setFloat("cutOff", glm::cos(glm::radians(12.5f)));
+            ourShader.setFloat("outerCutOff", glm::cos(glm::radians(17.5f)));
+        }
+        else {
+            // spotlight apagado: valores neutros
+            ourShader.setVec3("lightPos", glm::vec3(0.0f));
+            ourShader.setVec3("lightDir", glm::vec3(0.0f, -1.0f, 0.0f));
+            ourShader.setFloat("cutOff", glm::cos(glm::radians(0.0f)));
+            ourShader.setFloat("outerCutOff", glm::cos(glm::radians(0.0f)));
+        }
+
+        // view/projection transformations
+        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
         glm::mat4 view = camera.GetViewMatrix();
         ourShader.setMat4("projection", projection);
         ourShader.setMat4("view", view);
 
         // Model transformation for scene
         glActiveTexture(GL_TEXTURE3);
-        glBindTexture(GL_TEXTURE_2D, 0); // Textura vac韆
+        glBindTexture(GL_TEXTURE_2D, 0); // Textura vac铆a
         ourShader.setInt("emissionMap", 3);
         ourShader.setFloat("emissionIntensity", 0.0f); // Intensidad cero
 
@@ -194,15 +220,15 @@ int main()
     // ==========================================================================
     // Renderizar Freddy (modelo animado)
     // ==========================================================================
-        // Desactivamos temporalmente la textura de emisi髇
+        // Desactivamos temporalmente la textura de emisi贸n
         glActiveTexture(GL_TEXTURE3);
-        glBindTexture(GL_TEXTURE_2D, 0); // Textura vac韆
+        glBindTexture(GL_TEXTURE_2D, 0); // Textura vac铆a
         ourShader.setInt("emissionMap", 3);
         ourShader.setFloat("emissionIntensity", 0.0f); // Intensidad cero
         
         glm::mat4 freddyMatrix = glm::mat4(1.0f);
 		
-        freddyMatrix = glm::translate(freddyMatrix, glm::vec3(0.0f, 7.0f, -156.0f)); // Posici髇 
+        freddyMatrix = glm::translate(freddyMatrix, glm::vec3(0.0f, 7.0f, -156.0f)); // Posici贸n 
         freddyMatrix = glm::rotate(freddyMatrix, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
         freddyMatrix = glm::scale(freddyMatrix, glm::vec3(0.30f)); // Escala 
         ourShader.setMat4("model", freddyMatrix);
@@ -228,7 +254,7 @@ int main()
         for (const auto& pos : foxyPositions) {
             glm::mat4 model = glm::mat4(1.0f);
             model = glm::translate(model, pos);
-			model = glm::rotate(model, glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f)); // Rotaci髇 para alinear el modelo
+			model = glm::rotate(model, glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f)); // Rotaci贸n para alinear el modelo
             model = glm::scale(model, glm::vec3(6.5f));
             ourShader.setMat4("model", model);
             foxyModel.Draw(ourShader);
@@ -283,7 +309,7 @@ int main()
     //  Instancias de Bunny
     // ==========================================================================
         glActiveTexture(GL_TEXTURE6);
-        glBindTexture(GL_TEXTURE_2D, 0); // Sin emisi髇 para Bunny
+        glBindTexture(GL_TEXTURE_2D, 0); // Sin emisi贸n para Bunny
         ourShader.setInt("emissionMap", 6);
         ourShader.setFloat("emissionIntensity", 0.0f);
 
@@ -303,10 +329,10 @@ int main()
         }
 
         // Swap buffers and poll events
+        model_SpotLight
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
-
     glfwTerminate();
     return 0;
 }
@@ -325,6 +351,7 @@ void processInput(GLFWwindow* window)
         camera.ProcessKeyboard(LEFT, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         camera.ProcessKeyboard(RIGHT, deltaTime);
+
     static bool oPressedLastFrame = false;
     if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS) {
         if (!oPressedLastFrame) {
@@ -337,6 +364,17 @@ void processInput(GLFWwindow* window)
     }
     else {
         oPressedLastFrame = false;
+    }
+  
+    // Toggle con tecla K
+    if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS && !keyPressed)
+    {
+        spotlightOn = !spotlightOn;
+        keyPressed = true;
+    }
+    if (glfwGetKey(window, GLFW_KEY_K) == GLFW_RELEASE)
+    {
+        keyPressed = false;
     }
 }
 

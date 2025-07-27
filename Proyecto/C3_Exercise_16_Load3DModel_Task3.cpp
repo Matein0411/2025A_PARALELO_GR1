@@ -49,8 +49,8 @@ const int NUM_STEPS = 4;
 ALuint stepBuffers[NUM_STEPS] = { 0 };
 int currentStep = 0;
 float lastStepTime = 0.0f;
-float stepInterval = 0.4f; 
-std::vector<ALuint> stepSources; 
+float stepInterval = 0.4f;
+std::vector<ALuint> stepSources;
 
 // Carga un archivo WAV PCM simple
 bool LoadWavFile(const char* filename, std::vector<char>& buffer, ALenum& format, ALsizei& freq)
@@ -102,7 +102,7 @@ void processInput(GLFWwindow* window);
 
 int main()
 {
-	// Init GLFW
+    // Init GLFW
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -136,15 +136,16 @@ int main()
     glEnable(GL_DEPTH_TEST);
 
     // Build and compile shader
+    Shader lightCubeShader("shaders/lightcube.vs", "shaders/lightcube.fs");
     Shader ourShader("shaders/shader_exercise16_mloading.vs", "shaders/shader_exercise16_mloading.fs");
 
     // Load models
     Model sceneModel("models/FNAF2/FNAF2.obj");
     Model foxyModel("models/foxy_the_pirate_fox/foxy.obj");
     Model jackModel("models/jack-o-bonnie_rig/osoRoto.obj");
-	Model frankeyModel("models/frankey/zomb.obj");
+    Model frankeyModel("models/frankey/zomb.obj");
     Model bunnyModel("models/bunny/bunny.obj");
-	
+
     //********************************************************************
     // Cargar frames de animaci贸n para Freddy
     std::vector<Model> freddyFrames;
@@ -156,7 +157,7 @@ int main()
         ss << "models/bearFreddy/pos" << i << ".obj";
         freddyFrames.push_back(Model(ss.str()));
     }
-	//*******************************************************************
+    //*******************************************************************
 
     // 1. Mapa de emisi贸n de Foxy
     unsigned int emissionMap;
@@ -200,7 +201,7 @@ int main()
     unsigned int frankeyEmissionMap;
     glGenTextures(1, &frankeyEmissionMap);
     glBindTexture(GL_TEXTURE_2D, frankeyEmissionMap);
-	// Configurar par谩metros de textura
+    // Configurar par谩metros de textura
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
@@ -258,6 +259,60 @@ int main()
         }
     }
 
+    // Forma Pointlight
+    float cubeVertices[] = {
+        // positions
+        -0.1f, -0.1f, -0.1f,
+         0.1f, -0.1f, -0.1f,
+         0.1f,  0.1f, -0.1f,
+         0.1f,  0.1f, -0.1f,
+        -0.1f,  0.1f, -0.1f,
+        -0.1f, -0.1f, -0.1f,
+
+        -0.1f, -0.1f,  0.1f,
+         0.1f, -0.1f,  0.1f,
+         0.1f,  0.1f,  0.1f,
+         0.1f,  0.1f,  0.1f,
+        -0.1f,  0.1f,  0.1f,
+        -0.1f, -0.1f,  0.1f,
+
+        -0.1f,  0.1f,  0.1f,
+        -0.1f,  0.1f, -0.1f,
+        -0.1f, -0.1f, -0.1f,
+        -0.1f, -0.1f, -0.1f,
+        -0.1f, -0.1f,  0.1f,
+        -0.1f,  0.1f,  0.1f,
+
+         0.1f,  0.1f,  0.1f,
+         0.1f,  0.1f, -0.1f,
+         0.1f, -0.1f, -0.1f,
+         0.1f, -0.1f, -0.1f,
+         0.1f, -0.1f,  0.1f,
+         0.1f,  0.1f,  0.1f,
+
+        -0.1f, -0.1f, -0.1f,
+         0.1f, -0.1f, -0.1f,
+         0.1f, -0.1f,  0.1f,
+         0.1f, -0.1f,  0.1f,
+        -0.1f, -0.1f,  0.1f,
+        -0.1f, -0.1f, -0.1f,
+
+        -0.1f,  0.1f, -0.1f,
+         0.1f,  0.1f, -0.1f,
+         0.1f,  0.1f,  0.1f,
+         0.1f,  0.1f,  0.1f,
+        -0.1f,  0.1f,  0.1f,
+        -0.1f,  0.1f, -0.1f
+    };
+
+    unsigned int lightCubeVAO, VBO;
+    glGenVertexArrays(1, &lightCubeVAO);
+    glGenBuffers(1, &VBO);
+    glBindVertexArray(lightCubeVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), cubeVertices, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
 
     // Render loop
     while (!glfwWindowShouldClose(window))
@@ -289,6 +344,51 @@ int main()
 
         // Activate shader
         ourShader.use();
+
+        // Spotlight
+        glm::vec3 pointPositions[5] = {
+            glm::vec3(85.5457f, 18.8488f, -135.15f), // verde
+            glm::vec3(-42.1298f, 14.4956f, -39.5177f),  // rojo
+            glm::vec3(-65.6087f, 21.8362f, -100.089f),// azul
+            glm::vec3(-19.6117f, 18.763f, 14.7068f), // violeta
+            glm::vec3(0.405586f, 14.9602f, -0.436662f)   // amarilla (l醡para)
+        };
+
+        glm::vec3 pointColors[5] = {
+            glm::vec3(0.7f, 1.4f, 0.7f) * 2.5f,  // verde m醩 brillante
+            glm::vec3(0.8f, 0.4f, 0.4f) * 2.5f,  // rojo
+            glm::vec3(0.4f, 0.6f, 1.0f) * 1.6f,  // azul tenue pero claro
+            glm::vec3(0.6f, 0.4f, 0.7f) * 1.3f,  // violeta
+            glm::vec3(0.8f, 0.65f, 0.3f) * 1.5f  // l醡para
+        };
+
+        // Efectos e intesidad luces
+        for (int i = 0; i < 5; ++i) {
+            std::string base = "pointLights[" + std::to_string(i) + "]";
+            ourShader.setVec3(base + ".position", pointPositions[i]);
+
+            if (i == 4) {
+                // Luz 5 l醡para cuadrada con parpadeo lento 
+                float time = glfwGetTime();
+                float damagedFlicker = (sin(time * 2.0f) + sin(time * 3.1f + 1.5f)) * 0.25f + 1.0f;
+                damagedFlicker = std::max(0.3f, std::min(damagedFlicker, 1.5f)); // nunca se apaga totalmente
+                ourShader.setVec3(base + ".color", pointColors[i] * damagedFlicker);
+            }
+            else if (i == 3) {
+                // Luz 4 parpadeo tipo foco da馻do
+                float flicker = sin(glfwGetTime() * 10.0f) * 0.5f + 1.0f;
+                ourShader.setVec3(base + ".color", pointColors[i] * flicker);
+            }
+            else {
+                // Otras luces normales
+                ourShader.setVec3(base + ".color", pointColors[i]);
+            }
+
+
+            ourShader.setFloat(base + ".constant", 1.0f);
+            ourShader.setFloat(base + ".linear", 0.07f);     
+            ourShader.setFloat(base + ".quadratic", 0.017f);
+        }
 
         // Set camera/view/projection matrices
         //glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom),
@@ -333,17 +433,17 @@ int main()
         ourShader.setMat4("model", modelMatrix);
         sceneModel.Draw(ourShader);
 
-    // ==========================================================================
-    // Renderizar Freddy (modelo animado)
-    // ==========================================================================
-        // Desactivamos temporalmente la textura de emisi贸n
+        // ==========================================================================
+        // Renderizar Freddy (modelo animado)
+        // ==========================================================================
+            // Desactivamos temporalmente la textura de emisi贸n
         glActiveTexture(GL_TEXTURE3);
         glBindTexture(GL_TEXTURE_2D, 0); // Textura vac铆a
         ourShader.setInt("emissionMap", 3);
         ourShader.setFloat("emissionIntensity", 0.0f); // Intensidad cero
-        
+
         glm::mat4 freddyMatrix = glm::mat4(1.0f);
-		
+
         freddyMatrix = glm::translate(freddyMatrix, glm::vec3(0.0f, 7.0f, -156.0f)); // Posici贸n 
         freddyMatrix = glm::rotate(freddyMatrix, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
         freddyMatrix = glm::scale(freddyMatrix, glm::vec3(0.30f)); // Escala 
@@ -351,11 +451,11 @@ int main()
 
         // Seleccionar frame actual basado en el tiempo
         int currentFrame = (int)(currentTime * fps) % totalFrames;
-        freddyFrames[currentFrame].Draw(ourShader); 
-        
-    // ==========================================================================
-	//  Instancias de Foxy
-    // ==========================================================================
+        freddyFrames[currentFrame].Draw(ourShader);
+
+        // ==========================================================================
+        //  Instancias de Foxy
+        // ==========================================================================
         glActiveTexture(GL_TEXTURE3);
         glBindTexture(GL_TEXTURE_2D, emissionMap);
         ourShader.setInt("emissionMap", 3);
@@ -364,21 +464,21 @@ int main()
         vector<glm::vec3> foxyPositions = {
             //glm::vec3(8.0f, -3.5f, -56.0f),
             glm::vec3(19.0f, 1.0f, 27.0f),
-           // glm::vec3(19.0f, 9.0f, 27.0f)
+            // glm::vec3(19.0f, 9.0f, 27.0f)
         };
 
         for (const auto& pos : foxyPositions) {
             glm::mat4 model = glm::mat4(1.0f);
             model = glm::translate(model, pos);
-			model = glm::rotate(model, glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f)); // Rotaci贸n para alinear el modelo
+            model = glm::rotate(model, glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f)); // Rotaci贸n para alinear el modelo
             model = glm::scale(model, glm::vec3(6.5f));
             ourShader.setMat4("model", model);
             foxyModel.Draw(ourShader);
         }
 
-    // ==========================================================================
-    //  Instancias de Jack-O-Bonnie
-    // ==========================================================================
+        // ==========================================================================
+        //  Instancias de Jack-O-Bonnie
+        // ==========================================================================
         glActiveTexture(GL_TEXTURE4);
         glBindTexture(GL_TEXTURE_2D, jackEmissionMap);
         ourShader.setInt("emissionMap", 4);
@@ -393,15 +493,15 @@ int main()
         for (const auto& pos : jackPositions) {
             glm::mat4 model = glm::mat4(1.0f);
             model = glm::translate(model, pos);
-			model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f)); 
+            model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
             model = glm::scale(model, glm::vec3(4.5f));
             ourShader.setMat4("model", model);
             jackModel.Draw(ourShader);
         }
 
-    // ==========================================================================
-    //  Instancias de Frankey
-    // ==========================================================================
+        // ==========================================================================
+        //  Instancias de Frankey
+        // ==========================================================================
         glActiveTexture(GL_TEXTURE5);
         glBindTexture(GL_TEXTURE_2D, frankeyEmissionMap);
         ourShader.setInt("emissionMap", 5);
@@ -410,7 +510,7 @@ int main()
         std::vector<glm::vec3> frankeyPositions = {
             //glm::vec3(-6.0f, -2.5f, -57.0f),
             glm::vec3(-55.7778, 16.0, -110.388),
-           // glm::vec3(-2.0f, -2.5f, -55.0f)
+            // glm::vec3(-2.0f, -2.5f, -55.0f)
         };
 
         for (const auto& pos : frankeyPositions) {
@@ -421,9 +521,9 @@ int main()
             frankeyModel.Draw(ourShader);
         }
 
-    // ==========================================================================
-    //  Instancias de Bunny
-    // ==========================================================================
+        // ==========================================================================
+        //  Instancias de Bunny
+        // ==========================================================================
         glActiveTexture(GL_TEXTURE6);
         glBindTexture(GL_TEXTURE_2D, 0); // Sin emisi贸n para Bunny
         ourShader.setInt("emissionMap", 6);
@@ -432,7 +532,7 @@ int main()
         std::vector<glm::vec3> bunnyPositions = {
             //glm::vec3(10.0f, -3.5f, -60.0f),
             glm::vec3(-58.0f, 5.0f, -100.0f),
-           // glm::vec3(13.0f, -3.5f, -61.0f)
+            // glm::vec3(13.0f, -3.5f, -61.0f)
         };
 
         for (const auto& pos : bunnyPositions) {
@@ -443,6 +543,19 @@ int main()
             ourShader.setMat4("model", model);
             bunnyModel.Draw(ourShader);
         }
+
+        // ======== Dibujar cubo visual de la l醡para cuadrada ========
+        lightCubeShader.use();
+        lightCubeShader.setMat4("projection", projection);
+        lightCubeShader.setMat4("view", view);
+        lightCubeShader.setVec3("lightColor", glm::vec3(0.8f, 0.65f, 0.3f) * 1.5f); // mismo color que la 5ta point light
+
+        glm::mat4 lampModel = glm::mat4(1.0f);
+        lampModel = glm::translate(lampModel, glm::vec3(0.405586f, 14.9602f, -0.436662f)); // posici髇 de la l醡para
+        lightCubeShader.setMat4("model", lampModel);
+
+        glBindVertexArray(lightCubeVAO);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
 
         // Swap buffers and poll events
         glfwSwapBuffers(window);
@@ -510,7 +623,7 @@ void processInput(GLFWwindow* window)
         lastStepTime = currentTime;
     }
 
-// glfw: whenever the window size changed (by OS or user resize) this callback function executes
+    // glfw: whenever the window size changed (by OS or user resize) this callback function executes
     static bool oPressedLastFrame = false;
     if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS) {
         if (!oPressedLastFrame) {
@@ -524,7 +637,7 @@ void processInput(GLFWwindow* window)
     else {
         oPressedLastFrame = false;
     }
-  
+
     // Toggle con tecla K
     if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS && !keyPressed)
     {

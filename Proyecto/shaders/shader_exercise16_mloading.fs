@@ -17,11 +17,23 @@ uniform vec3 lightDir;
 uniform float cutOff;
 uniform float outerCutOff;
 
+// === Nuevas luces tenues ===
+struct PointLight {
+    vec3 position;
+    vec3 color;
+    float constant;
+    float linear;
+    float quadratic;
+};
+
+#define NUM_POINT_LIGHTS 5
+uniform PointLight pointLights[NUM_POINT_LIGHTS];
+
 void main()
 {
     vec3 texColor = texture(texture_diffuse1, TexCoords).rgb;
     
-    // ====== Luz ambiente, difusa y especular (Spotlight) ======
+    // ===== Luz ambiente, difusa y especular (Spotlight) =====
     vec3 lightColor = vec3(1.0);
     vec3 ambient = 0.1 * lightColor;
 
@@ -43,13 +55,30 @@ void main()
     diffuse *= intensity;
     specular *= intensity;
 
-    // ====== Emisión adicional (glow) ======
+    // ===== Luz tenue (Point Lights) =====
+    vec3 pointLightResult = vec3(0.0);
+    for (int i = 0; i < NUM_POINT_LIGHTS; ++i) {
+        vec3 toLight = normalize(pointLights[i].position - FragPos);
+        float diffPL = max(dot(norm, toLight), 0.0);
+
+        float distance = length(pointLights[i].position - FragPos);
+        float attenuation = 1.0 / (pointLights[i].constant + pointLights[i].linear * distance + pointLights[i].quadratic * distance * distance);
+
+        vec3 ambientPL = 0.05 * pointLights[i].color;
+        vec3 diffusePL = diffPL * pointLights[i].color;
+
+        ambientPL *= attenuation;
+        diffusePL *= attenuation;
+
+        pointLightResult += ambientPL + diffusePL;
+    }
+
+    // ===== Emisión adicional (glow) =====
     vec3 emission = texture(emissionMap, TexCoords).rgb;
     float emissionFactor = step(0.1, length(emission)); // Activar solo si hay brillo
     emission = emission * emissionIntensity * emissionFactor;
 
-    // Color final con iluminación + emisión
-    vec3 result = (ambient + diffuse + specular) * texColor + emission;
-
+    // ===== Color final =====
+    vec3 result = (ambient + diffuse + specular + pointLightResult) * texColor + emission;
     FragColor = vec4(result, 1.0);
 }

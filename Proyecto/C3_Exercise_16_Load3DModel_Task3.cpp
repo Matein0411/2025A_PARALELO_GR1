@@ -381,49 +381,78 @@ int main()
         ourShader.use();
 
         // Spotlight
-        glm::vec3 pointPositions[5] = {
-            glm::vec3(85.5457f, 18.8488f, -135.15f), // verde
-            glm::vec3(-42.1298f, 14.4956f, -39.5177f),  // rojo
-            glm::vec3(-65.6087f, 21.8362f, -100.089f),// azul
-            glm::vec3(-19.5621f, 19.076f, 28.8915f), // violeta (-19.562, 19.0716, 28.8915)
-            glm::vec3(0.405586f, 14.9602f, -0.436662f)   // amarilla (lámpara)
+        glm::vec3 pointPositions[14] = {
+            glm::vec3(85.5457f, 18.8488f, -135.15f),        // verde
+            glm::vec3(-42.1298f, 14.4956f, -39.5177f),      // rojo
+            glm::vec3(-65.6087f, 21.8362f, -100.089f),      // azul
+            glm::vec3(-19.5621f, 19.076f, 28.8915f),        // violeta
+            glm::vec3(0.405586f, 14.9602f, -0.436662f),     // amarilla (lámpara)
+            glm::vec3(-20.0664f, 19.1182f, 27.9534f),       // nueva roja brillante
+            glm::vec3(-42.935f, 15.169f, -40.2981f),        // nueva verde brillante
+            glm::vec3(-86.1062f, 18.5736f, -125.076f), // nueva roja brillante
+            glm::vec3(18.9455, 19.0268, -39.0414),          // nueva roja brillante
+            glm::vec3(18.4234, 19.1007, -9.38387),          // nueva roja brillante
+            glm::vec3(91.0902, -19.1415, -66.6511),         // nueva roja brillante
+            glm::vec3(85.3545, -19.1415, -75.9758),          // nueva roja brillante
+            glm::vec3(91.0902, -19.1415, -66.6511),         // nueva roja brillante
+            glm::vec3(85.3545, -19.1415, -75.9758)          // nueva roja brillante
+
+
         };
 
-        glm::vec3 pointColors[5] = {
-            glm::vec3(0.7f, 1.4f, 0.7f) * 2.5f,  // verde más brillante
+
+        glm::vec3 pointColors[14] = {
+            glm::vec3(0.7f, 1.4f, 0.7f) * 2.5f,  // verde
             glm::vec3(0.8f, 0.4f, 0.4f) * 2.5f,  // rojo
-            glm::vec3(0.4f, 0.6f, 1.0f) * 1.6f,  // azul tenue pero claro
+            glm::vec3(0.4f, 0.6f, 1.0f) * 1.6f,  // azul
             glm::vec3(0.6f, 0.4f, 0.7f) * 1.3f,  // violeta
-            glm::vec3(0.8f, 0.65f, 0.3f) * 1.5f  // lámpara
+            glm::vec3(0.8f, 0.65f, 0.3f) * 1.5f, // lámpara
+            glm::vec3(1.00f, 0.00f, 0.00f) * 2.5f,  // rojo intenso
+            glm::vec3(0.60f, 1.00f, 0.60f) * 2.5f,  // verde intenso
+            glm::vec3(1.00f, 0.00f, 0.00f) * 2.5f,  // rojo intenso
+            glm::vec3(1.00f, 0.00f, 0.00f) * 2.5f,  // rojo intenso
+            glm::vec3(1.00f, 0.00f, 0.00f) * 2.5f,  // rojo intenso
+            glm::vec3(1.00f, 0.00f, 0.00f) * 2.5f,  // rojo intenso
+            glm::vec3(1.00f, 0.00f, 0.00f) * 2.5f,  // rojo intenso
+            glm::vec3(1.00f, 0.00f, 0.00f) * 2.5f,  // rojo intenso
+            glm::vec3(1.00f, 0.00f, 0.00f) * 2.5f,  // rojo intenso
         };
+
 
         // Efectos e intesidad luces
-        for (int i = 0; i < 5; ++i) {
+        for (int i = 0; i < 14; ++i) {
             std::string base = "pointLights[" + std::to_string(i) + "]";
             ourShader.setVec3(base + ".position", pointPositions[i]);
 
+            float time = glfwGetTime();
+
             if (i == 4) {
                 // Luz 5 lámpara cuadrada con parpadeo lento 
-                float time = glfwGetTime();
                 float damagedFlicker = (sin(time * 2.0f) + sin(time * 3.1f + 1.5f)) * 0.25f + 1.0f;
                 damagedFlicker = std::max(0.3f, std::min(damagedFlicker, 1.5f)); // nunca se apaga totalmente
                 ourShader.setVec3(base + ".color", pointColors[i] * damagedFlicker);
             }
             else if (i == 3) {
                 // Luz 4 parpadeo tipo foco dañado
-                float flicker = sin(glfwGetTime() * 10.0f) * 0.5f + 1.0f;
+                float flicker = sin(time * 10.0f) * 0.5f + 1.0f;
                 ourShader.setVec3(base + ".color", pointColors[i] * flicker);
             }
+            else if (i >= 5) {
+                // Nuevas luces con parpadeo dañado tipo lámpara
+                float damagedFlicker = (sin(time * 2.0f + i) + sin(time * 3.1f + i * 1.5f)) * 0.25f + 1.0f;
+                damagedFlicker = std::max(0.3f, std::min(damagedFlicker, 1.5f));
+                ourShader.setVec3(base + ".color", pointColors[i] * damagedFlicker);
+            }
             else {
-                // Otras luces normales
+                // Otras luces normales (0, 1, 2)
                 ourShader.setVec3(base + ".color", pointColors[i]);
             }
 
-
             ourShader.setFloat(base + ".constant", 1.0f);
-            ourShader.setFloat(base + ".linear", 0.07f);     
+            ourShader.setFloat(base + ".linear", 0.07f);
             ourShader.setFloat(base + ".quadratic", 0.017f);
         }
+
 
         // Set camera/view/projection matrices
         //glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom),

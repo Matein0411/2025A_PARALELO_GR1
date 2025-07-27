@@ -47,8 +47,12 @@ Ser reconocidos como pioneros en el desarrollo de simulaciones de terror educati
 
 ![alt text](assets/img1.jpeg)
 
+- 😱 Jumpscare activado al enfocar a Freddy.
+
+![alt text](assets/img3.jpeg)
+
 - 💡 Iluminación realista con shaders personalizados.
-- 🎧 Sonido 3D ambiental (pasos).
+- 🎧 Sonido 3D ambiental (pasos, encender linterna).
 - 🕹️ Exploración libre con cámara en primera persona.
 
 ---

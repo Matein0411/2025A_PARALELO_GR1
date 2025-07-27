@@ -51,6 +51,11 @@ Ser reconocidos como pioneros en el desarrollo de simulaciones de terror educati
 
 ![alt text](assets/img3.jpeg)
 
+- ✨ Luces parpadeantes dinámicas que intensifican la atmósfera.
+
+![alt text](assets/img4.jpeg)
+
+
 - 💡 Iluminación realista con shaders personalizados.
 - 🎧 Sonido 3D ambiental (pasos, encender linterna).
 - 🕹️ Exploración libre con cámara en primera persona.

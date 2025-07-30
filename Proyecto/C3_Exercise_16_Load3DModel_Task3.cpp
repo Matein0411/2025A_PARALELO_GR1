@@ -188,6 +188,9 @@ int main()
     }
     stbi_image_free(iData);
 
+    // DESACTIVAR el flip para el resto de texturas/modelos
+    stbi_set_flip_vertically_on_load(false);
+
     // Shader para la intro (el mismo basic.vs / basic.fs de código1)
     Shader introShader("shaders/basic.vs", "shaders/basic.fs");
 

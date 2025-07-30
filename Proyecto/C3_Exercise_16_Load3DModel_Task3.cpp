@@ -22,7 +22,7 @@
 #include <learnopengl/stb_image.h>
 
 // Callbacks
-void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+void framebuffer_size_callback(GLFWwindow * window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void processInput(GLFWwindow* window);
@@ -145,6 +145,52 @@ int main()
 
     // OpenGL configuration
     glEnable(GL_DEPTH_TEST);
+
+
+    // --- SETUP PANTALLA INTRO (copiado de intro.cpp) ---
+// Vertex data para el quad fullscreen
+    float introVerts[] = {
+         1.0f,  1.0f, 0.0f,  1.0f, 1.0f,
+         1.0f, -1.0f, 0.0f,  1.0f, 0.0f,
+        -1.0f, -1.0f, 0.0f,  0.0f, 0.0f,
+        -1.0f,  1.0f, 0.0f,  0.0f, 1.0f
+    };
+    unsigned int introIdx[] = { 0,1,3, 1,2,3 };
+    unsigned int introVAO, introVBO, introEBO;
+    glGenVertexArrays(1, &introVAO);
+    glGenBuffers(1, &introVBO);
+    glGenBuffers(1, &introEBO);
+    glBindVertexArray(introVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, introVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(introVerts), introVerts, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, introEBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(introIdx), introIdx, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindVertexArray(0);
+
+    // Carga textura intro
+    unsigned int introTex;
+    glGenTextures(1, &introTex);
+    glBindTexture(GL_TEXTURE_2D, introTex);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    stbi_set_flip_vertically_on_load(true);
+    int iW, iH, iCh;
+    unsigned char* iData = stbi_load("textures/negro.png", &iW, &iH, &iCh, 0);
+    if (iData) {
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, iW, iH, 0, GL_RGBA, GL_UNSIGNED_BYTE, iData);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }
+    stbi_image_free(iData);
+
+    // Shader para la intro (el mismo basic.vs / basic.fs de código1)
+    Shader introShader("shaders/basic.vs", "shaders/basic.fs");
+
 
     // Build and compile shader
     Shader lightCubeShader("shaders/lightcube.vs", "shaders/lightcube.fs");
@@ -349,9 +395,50 @@ int main()
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
+    // Captura el tiempo de inicio
+    //double introStart = glfwGetTime();
+    bool showIntro = true;
+    bool enterPressedLast = false;
+
     // Render loop
     while (!glfwWindowShouldClose(window))
     {
+        // dentro de while, en lugar del bloque timed:
+        if (showIntro) {
+            // 0) detectar ENTER (sin rebotes)
+            bool enterDown = (glfwGetKey(window, GLFW_KEY_ENTER) == GLFW_PRESS);
+            if (enterDown && !enterPressedLast) {
+                showIntro = false;
+            }
+            enterPressedLast = enterDown;
+
+            // 1) desactivar depth para que siempre se vea el quad
+            glDisable(GL_DEPTH_TEST);
+            glDepthMask(GL_FALSE);
+
+            // 2) dibujar intro
+            introShader.use();
+            introShader.setInt("screenTexture", 0);
+            glActiveTexture(GL_TEXTURE0);
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            glBindVertexArray(introVAO);
+            glBindTexture(GL_TEXTURE_2D, introTex);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+
+            // 3) restaurar depth
+            glDepthMask(GL_TRUE);
+            glEnable(GL_DEPTH_TEST);
+
+            // 4) swap & poll, saltar escena
+            glfwSwapBuffers(window);
+            glfwPollEvents();
+            continue;
+        }
+
+        // —— aquí sigue tu render “normal” de la escena (sin cambios) ——
+
+
         // Elimina fuentes de pasos que ya terminaron
         for (auto it = stepSources.begin(); it != stepSources.end(); ) {
             ALint state;
@@ -396,7 +483,7 @@ int main()
             glm::vec3(85.3545f, -19.1415f, -75.9758f),          // nueva roja brillante
             glm::vec3(91.0902f, -19.1415f, -66.6511f),         // nueva roja brillante
             glm::vec3(85.3545f, -19.1415f, -75.9758f),          // nueva roja brillante
-			glm::vec3(-20.0604, 19.0919, -49.7252),         // nueva roja brillante
+            glm::vec3(-20.0604, 19.0919, -49.7252),         // nueva roja brillante
             glm::vec3(-19.8531, 18.9774, 14.5951)         // nueva roja brillante
         };
 
@@ -464,7 +551,7 @@ int main()
         // PosiciÃ³n del espectador
         // ourShader.setVec3("viewPos", camera.Position);
 
-        // Spotlight activado solo si se mantiene presionada la tecla 'K'
+                // Spotlight activado solo si se mantiene presionada la tecla 'K'
         if (spotlightOn) {
             ourShader.setVec3("lightPos", camera.Position);
             ourShader.setVec3("lightDir", camera.Front);

@@ -123,7 +123,7 @@ int main()
 #endif
 
     // Create window
-    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Exercise 16 Task 2", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "FNAF-Simulation", NULL, NULL);
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window\n";
@@ -570,7 +570,7 @@ int main()
         }
 
         // Definir la matriz de proyecciÃ³n una sola vez
-        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 200.0f);
 
         // Transformaciones de vista/proyecciÃ³n
         glm::mat4 view = camera.GetViewMatrix();

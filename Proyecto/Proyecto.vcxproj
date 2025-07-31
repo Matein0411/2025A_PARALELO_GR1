@@ -134,7 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Proyecto_Stuff\Library\glad.c" />
-    <ClCompile Include="C3_Exercise_16_Load3DModel_Task3.cpp" />
+    <ClCompile Include="FNAF.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\awesomeface.png" />
